@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Interview Simulator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AI-Powered Technical Interview Simulator">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  
+  <!-- Auth Overlay -->
+  <div id="authOverlay" class="auth-overlay">
+    <div class="glass-card auth-card">
+      <div class="auth-tabs">
+        <button id="tabLogin" class="auth-tab active">Login</button>
+        <button id="tabRegister" class="auth-tab">Register</button>
+      </div>
+      
+      <div id="loginForm" class="auth-form">
+        <h2>Welcome Back</h2>
+        <p>Login to access your AI interview sessions</p>
+        <input type="text" id="loginUsername" class="form-control" placeholder="Username">
+        <input type="password" id="loginPassword" class="form-control" placeholder="Password">
+        <button id="loginBtn" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+          <span class="btn-text">Sign In</span>
+        </button>
+      </div>
+
+      <div id="registerForm" class="auth-form" style="display: none;">
+        <h2>Create Account</h2>
+        <p>Start your optimized interview prep</p>
+        <input type="text" id="regUsername" class="form-control" placeholder="Username">
+        <input type="email" id="regEmail" class="form-control" placeholder="Email Address">
+        <input type="password" id="regPassword" class="form-control" placeholder="Password">
+        <button id="registerBtn" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+          <span class="btn-text">Register</span>
+        </button>
+      </div>
+      
+      <div id="authStatus" class="status-text" style="text-align: center; margin-top: 1rem;"></div>
+    </div>
+  </div>
+
+  <div class="app-container" id="mainApp" style="display: none;">
+    <header class="header">
+      <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <div>
+          <h1 class="header-title">AI Interview Simulator</h1>
+          <p class="header-subtitle">Optimized Technical Interview Preparation</p>
+        </div>
+        <div class="user-profile">
+          <span id="userNameDisplay" style="color: var(--accent-cyan); font-weight: 600;"></span>
+          <button id="logoutBtn" class="btn btn-secondary btn-sm" style="margin-left: 1rem; padding: 4px 12px; font-size: 0.8rem;">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="dashboard-grid">
+      <!-- 1. Resume Upload -->
+      <section class="glass-card active" id="cardUpload">
+        <div class="step-header">
+          <div class="step-number">1</div>
+          <h2>Document Analysis</h2>
+        </div>
+        <p style="margin-bottom: 1rem; color: var(--text-secondary);">Upload your resume to extract key skills and contextualize the interview.</p>
+        
+        <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
+          <input type="file" id="resumeFile" class="form-control" accept=".pdf,.txt,.docx">
+        </div>
+        
+        <button id="uploadBtn" class="btn btn-primary" style="width: 100%;">
+          <span class="btn-text">Extract & Initialize Context</span>
+        </button>
+        
+        <div id="uploadStatus" class="status-text"></div>
+        <div id="skillsList" class="skills-pill-container"></div>
+      </section>
+
+      <!-- 2. Interview Simulation -->
+      <section class="glass-card disabled" id="cardInterview">
+        <div class="step-header">
+          <div class="step-number">2</div>
+          <h2>Live Interview</h2>
+        </div>
+        
+        <button id="nextQuestionBtn" class="btn btn-secondary" style="margin-bottom: 1.5rem; width: 100%;">
+          <span class="btn-text">Generate Next Question</span>
+        </button>
+        
+        <div class="question-box" id="questionBoxContainer" style="display: none;">
+          <div style="color: var(--accent-purple); font-weight: 600; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            AI Interviewer <span id="questionStatusIndicator"></span>
+          </div>
+          <div id="questionText">Awaiting generation...</div>
+        </div>
+        
+        <div id="answerSection" style="display: none;">
+          <textarea id="answerText" class="form-control" rows="4" placeholder="Type your comprehensive answer here..."></textarea>
+          <button id="submitAnswerBtn" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
+            <span class="btn-text">Submit Answer</span>
+          </button>
+        </div>
+        
+        <div id="feedbackBox"></div>
+      </section>
+
+      <!-- 3. Dynamic Summary -->
+      <section class="glass-card disabled summary-panel" id="cardSummary">
+        <div class="step-header">
+          <div class="step-number">3</div>
+          <h2>Session Analytics</h2>
+        </div>
+        
+        <p style="margin-bottom: 1.5rem; color: var(--text-secondary);">Track your performance metrics across the current interview session.</p>
+        <button id="refreshSummaryBtn" class="btn btn-secondary" style="margin-bottom: 1.5rem; width: 100%;">
+          <span class="btn-text">Refresh Session Summary</span>
+        </button>
+        <div id="summaryBox" style="margin-top: 1rem; min-height: 4rem;">
+          <div style="background: rgba(0, 0, 0, 0.2); padding: 1.5rem; border-radius: 12px; color: var(--text-secondary); text-align: center;">
+            Results logic and analytics will populate here after you answer questions.
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

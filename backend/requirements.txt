@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+python-multipart
+requests
+spacy
+pdfplumber
+python-docx
+sentence-transformers
+faiss-cpu
+numpy
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt==4.0.1
+email-validator
